@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MedVantage Health Services | Primary Care in Batangas City</title>
+<meta name="description" content="MedVantage Health Services is a small, appointment-based practice in Batangas City offering primary care, diagnostics and preventive medicine." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b2b21;
+    --ink-soft:#41645a;
+    --ink-faint:#6b857c;
+    --green:#0fa968;
+    --green-deep:#0a7a4c;
+    --green-dark:#075437;
+    --mint:#dcf7e8;
+    --mint-soft:#eefaf3;
+    --line:rgba(11,43,33,.10);
+    --glass:rgba(255,255,255,.72);
+    --glass-strong:rgba(255,255,255,.9);
+    --radius:18px;
+    --shadow:0 18px 44px -22px rgba(11,43,33,.35);
+    --shadow-lg:0 30px 60px -28px rgba(11,43,33,.45);
+    --max:1160px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --spring:cubic-bezier(.34,1.4,.5,1);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:var(--ink);
+    background:#f2fbf5;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Background ---------- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-2;
+    background:url("dsds.jpg") center/cover no-repeat;
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(120% 90% at 12% 18%, rgba(255,255,255,.88) 0%, rgba(255,255,255,.54) 46%, rgba(255,255,255,.18) 72%),
+      linear-gradient(180deg, rgba(255,255,255,.58) 0%, rgba(240,252,245,.64) 55%, rgba(233,249,239,.8) 100%);
+    pointer-events:none;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{
+    width:100%
+    ;max-width:var(--max);
+    margin-inline:auto;
+    padding-inline:24px
+}
+  section{
+    scroll-margin-top:96px
+}
+
+  h1,h2,h3{
+    font-family:Fraunces,Georgia,serif;
+    font-weight:600;letter-spacing:-.015em;
+    line-height:1.12;
+    margin:0
+}
+  p{
+    margin:0
+}
+  a{
+    color:inherit;
+    text-decoration:none
+}
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;gap:9px;
+    font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green-deep);
+    background:rgba(255,255,255,.8);
+    border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;
+    backdrop-filter:blur(10px);
+    transition:background .3s var(--ease),border-color .3s var(--ease),transform .4s var(--spring);
+  }
+  .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--green);
+    transition:transform .45s var(--spring)
+}
+  .eyebrow:hover{
+    background:var(--mint);border-color:rgba(15,169,104,.32);
+    transform:translateY(-1px)
+}
+  .eyebrow:hover .dot{
+    transform:scale(1.6)
+}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(255,255,255,.72);
+    backdrop-filter:blur(16px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:74px}
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:11px;font-weight:600;
+    letter-spacing:-.01em
+}
+  .mark{
+    width:34px;
+    height:34px;border-radius:10px;
+    flex:none;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(150deg,var(--green),var(--green-deep));
+    box-shadow:0 6px 16px -6px rgba(15,169,104,.7);
+    transition:transform .6s var(--spring),box-shadow .35s;
+  }
+  .mark svg{
+    width:16px;
+    height:16px;
+    fill:#fff;transition:transform .6s var(--spring)
+}
+  .brand:hover .mark{
+    transform:rotate(90deg);
+    box-shadow:0 8px 20px -6px rgba(15,169,104,.9)}
+
+  .brand:hover .mark svg{transform:scale(.86)}
+
+  .brand small{display:block;
+    font-size:.68rem;
+    font-weight:500;
+    letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-faint);line-height:1
+}
+
+  /* Nav with travelling indicator */
+  nav{position:relative}
+
+  nav ul{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:2px;list-style:none;
+    margin:0;padding:0
+}
+  .nav-pill{
+    position:absolute;left:0;top:50%;height:34px;width:0;
+    transform:translateY(-50%) translateX(0);
+    background:var(--mint);border-radius:999px;
+    opacity:0;pointer-events:none;
+    transition:transform .45s var(--spring),width .45s var(--spring),opacity .25s var(--ease);
+  }
+  nav a{
+    position:relative;
+    z-index:1;display:block
+    ;padding:9px 15px;
+    border-radius:999px;
+    font-size:.92rem;font-weight:500;color:var(--ink-soft);
+    transition:color .22s var(--ease),transform .1s linear;
+    will-change:transform;
+  }
+  nav a:hover{color:var(--ink)}
+  nav a.active{color:var(--green-deep);font-weight:600}
+
+  .btn{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:12px 22px;
+    border-radius:999px;
+    border:1px solid transparent;
+    font-size:.9rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:box-shadow .3s var(--ease),background .25s,color .2s,border-color .25s,transform .1s linear;
+    will-change:transform;
+  }
+  /* sheen: travels on entry, then idles */
+  .btn::after{
+    content:"";position:absolute;
+    top:-20%;left:-60%;width:40%;height:140%;z-index:-1;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-18deg) translateX(0);
+    transition:transform .85s var(--ease);
+    pointer-events:none;
+  }
+  .btn:hover::after{transform:skewX(-18deg) translateX(430%)}
+  .btn .lbl{display:inline-block;transition:transform .35s var(--spring)}
+  .btn:hover .lbl{transform:translateY(-1px)}
+  .btn-primary{background:var(--green-deep);color:#fff;box-shadow:0 12px 26px -14px rgba(10,122,76,.9)}
+  .btn-primary:hover{background:var(--green-dark);box-shadow:0 20px 34px -16px rgba(10,122,76,1)}
+  .btn-primary:active{box-shadow:0 6px 14px -10px rgba(10,122,76,.9)}
+  .btn-ghost{background:rgba(255,255,255,.82);color:var(--ink);border-color:var(--line);backdrop-filter:blur(10px)}
+  .btn-ghost:hover{background:#fff;border-color:rgba(15,169,104,.42);color:var(--green-deep)}
+  .btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px}
+
+  .burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;transition:background .25s,border-color .25s}
+  .burger:hover{background:var(--mint);border-color:rgba(15,169,104,.35)}
+  .burger span{display:block;width:17px;height:1.6px;background:var(--ink);border-radius:2px;transition:transform .28s var(--spring),opacity .2s}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:clamp(64px,9vw,116px) 0 clamp(56px,7vw,88px)}
+  .hero-inner{max-width:620px}
+  .hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);margin:22px 0 20px}
+  .hero h1 em{
+    font-style:normal;color:var(--green-deep);
+    background-image:linear-gradient(var(--green),var(--green));
+    background-size:0% 2px;background-repeat:no-repeat;background-position:0 100%;
+    transition:background-size .5s var(--ease);
+  }
+  .hero h1:hover em{background-size:100% 2px}
+  .hero p.lede{font-size:clamp(1rem,1.5vw,1.1rem);color:var(--ink-soft);max-width:48ch}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1px;margin-top:52px;max-width:560px;
+    background:var(--line);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;
+    backdrop-filter:blur(10px);
+  }
+  .stat{position:relative;background:var(--glass);padding:18px 20px;overflow:hidden;transition:background .3s var(--ease)}
+  .stat::before{
+    content:"";position:absolute;
+    left:0;bottom:0;height:2px;width:100%;
+    background:var(--green);transform:scaleX(0);transform-origin:left;
+    transition:transform .5s var(--ease);
+  }
+  .stat:hover{background:#fff}
+  .stat:hover::before{transform:scaleX(1)}
+  .stat b{display:block;font-family:Fraunces,serif;font-size:1.55rem;line-height:1.1;color:var(--green-deep);transition:color .25s}
+  .stat:hover b{color:var(--green-dark)}
+  .stat span{font-size:.76rem;color:var(--ink-faint);letter-spacing:.05em;text-transform:uppercase}
+
+  /* ---------- Panels ---------- */
+  .panel{
+    position:relative;
+    background:var(--glass-strong);
+    border:1px solid var(--line);
+    border-radius:26px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(18px) saturate(130%);
+    padding:clamp(28px,4.4vw,54px);
+    transition:box-shadow .4s var(--ease),border-color .4s var(--ease);
+  }
+  .panel:hover{box-shadow:var(--shadow-lg);border-color:rgba(15,169,104,.24)}
+  .band{padding:clamp(48px,6vw,76px) 0}
+
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:center}
+  .about-grid h2{font-size:clamp(1.75rem,3.2vw,2.5rem);margin-bottom:18px}
+  .about-grid p{color:var(--ink-soft);margin-bottom:16px}
+
+  .checks{
+    list-style:none;
+    margin:26px 0 0;padding:0;display:grid;
+    gap:12px
+}
+  .checks li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;font-size:.94rem;color:var(--ink);
+    transition:transform .35s var(--ease),color .25s;
+  }
+  .checks li:hover{transform:translateX(6px);color:var(--green-dark)}
+  .checks .ico{
+    flex:none;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    margin-top:1px;
+    display:grid;place-items:center;
+    background:var(--mint);border:1px solid rgba(15,169,104,.24);
+    transition:background .3s,transform .4s var(--spring);
+  }
+  .checks .ico svg{width:12px;height:12px;fill:var(--green-deep);transition:fill .3s}
+  .checks li:hover .ico{background:var(--green-deep);transform:scale(1.12) rotate(-6deg)}
+  .checks li:hover .ico svg{fill:#fff}
+
+  .quote{
+    position:relative;
+    border-left:2px solid var(--green);
+    padding:2px 0 2px 20px;
+    font-family:Fraunces,serif;font-size:1.16rem;line-height:1.5;color:var(--ink);
+    transition:border-color .35s,padding-left .45s var(--ease),color .3s;
+  }
+  .quote::before{
+    content:"“";position:absolute;left:14px;top:-16px;
+    font-size:2.6rem;color:var(--green);opacity:0;
+    transform:translateY(6px);transition:opacity .4s,transform .5s var(--spring);
+  }
+  .quote:hover{border-color:var(--green-dark);padding-left:28px}
+  .quote:hover::before{opacity:.3;transform:none}
+  .quote footer{margin-top:14px;font-family:Inter,sans-serif;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ---------- Doctors ---------- */
+  .sec-head{max-width:640px;margin-bottom:38px}
+  .sec-head h2{font-size:clamp(1.75rem,3.2vw,2.5rem);margin:16px 0 14px}
+  .sec-head p{color:var(--ink-soft)}
+
+  .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;perspective:1400px}
+  .card{
+    position:relative;overflow:hidden;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    display:flex;flex-direction:column;
+    --tx:0px;--ty:0px;--rx:0deg;--ry:0deg;--nx:0;--ny:0;
+    --px:50%;--py:50%;
+    transform:perspective(1000px)
+              translate3d(var(--tx),var(--ty),0)
+              rotateX(var(--rx)) rotateY(var(--ry));
+    transition:box-shadow .4s var(--ease),border-color .4s var(--ease),transform .1s linear;
+    will-change:transform;
+    transform-style:preserve-3d;
+  }
+  /* top rule */
+  .card::before{
+    content:"";position:absolute;
+    top:0;left:0;right:0;height:3px;z-index:5;
+    background:linear-gradient(90deg,var(--green),var(--green-dark));
+    transform:scaleX(0);transform-origin:left;
+    transition:transform .5s var(--ease);
+  }
+  /* specular light following the pointer */
+  .card::after{
+    content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:
+      radial-gradient(300px circle at var(--px) var(--py), rgba(255,255,255,.85), transparent 55%),
+      radial-gradient(340px circle at var(--px) var(--py), rgba(15,169,104,.14), transparent 70%);
+    opacity:0;transition:opacity .4s var(--ease);
+    mix-blend-mode:soft-light;
+  }
+  .card:hover{box-shadow:var(--shadow-lg);border-color:rgba(15,169,104,.32)}
+  .card:hover::before{transform:scaleX(1)}
+  .card:hover::after{opacity:1}
+  .card:focus-within{box-shadow:var(--shadow-lg);border-color:rgba(15,169,104,.32)}
+  .card:focus-within::before{transform:scaleX(1)}
+
+  /* --- Portrait: paste your image src inside .portrait --- */
+  .portrait{
+    position:relative;aspect-ratio:4/5;width:100%;overflow:hidden;
+    display:grid;place-items:center;
+    background:linear-gradient(160deg,var(--mint),var(--mint-soft));
+    border-bottom:1px solid rgba(15,169,104,.14);
+  }
+  .portrait .initials{
+    font-family:Fraunces,serif;font-size:1.7rem;font-weight:600;
+    color:var(--green-deep);opacity:.5;letter-spacing:.04em;
+    transition:opacity .3s,transform .5s var(--spring);
+  }
+  .portrait img{
+    position:absolute;inset:0;z-index:1;
+    width:100%;height:100%;object-fit:cover;object-position:center 22%;
+    transform:translate3d(calc(var(--nx) * -7px),calc(var(--ny) * -7px),0) scale(1.04);
+    transition:transform .12s linear,filter .5s,opacity .3s;
+    will-change:transform;
+  }
+  .portrait img.is-broken{opacity:0}
+  .card:hover .portrait img{scale:1.08;filter:saturate(1.12) contrast(1.04)}
+  .portrait::after{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,transparent 40%,rgba(7,84,55,.6) 100%);
+    opacity:0;transition:opacity .45s var(--ease);
+  }
+  .card:hover .portrait::after{opacity:1}
+  .card:hover .portrait .initials{opacity:.75;transform:scale(1.08)}
+
+  .avail{
+    position:absolute;z-index:3;top:12px;left:12px;
+    font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--green-dark);background:rgba(255,255,255,.95);
+    border:1px solid rgba(15,169,104,.3);
+    padding:5px 10px;border-radius:999px;backdrop-filter:blur(6px);
+    opacity:0;transform:translateY(-6px) scale(.94);
+    transition:opacity .35s var(--ease),transform .5s var(--spring);
+  }
+  .card:hover .avail{opacity:1;transform:none}
+
+  .card-body{display:flex;flex-direction:column;gap:12px;padding:22px;flex:1}
+  .card h3{font-size:1.06rem;transition:color .25s}
+  .card:hover h3{color:var(--green-dark)}
+  .role{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-deep);font-weight:600;transition:letter-spacing .4s var(--ease)}
+  .card:hover .role{letter-spacing:.14em}
+  .card p{font-size:.9rem;color:var(--ink-soft)}
+  .card .more{
+    margin-top:auto;padding-top:6px;
+    font-size:.86rem;font-weight:600;color:var(--ink);
+    display:inline-flex;align-items:center;gap:7px;width:fit-content;
+    transition:color .25s,gap .4s var(--spring);
+  }
+  .card .more span{transition:transform .45s var(--spring)}
+  .card:hover .more{color:var(--green-deep);gap:11px}
+  .card:hover .more span{transform:translateX(4px)}
+  .card .more:focus-visible span{transform:translateX(4px)}
+
+  /* ---------- CTA + Footer ---------- */
+  .cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px}
+  .cta h2{font-size:clamp(1.6rem,3vw,2.2rem);max-width:22ch}
+  .cta p{color:var(--ink-soft);margin-top:10px;font-size:.94rem;max-width:44ch}
+  .cta .actions{margin-top:0}
+
+  footer.site{padding:44px 0 40px;border-top:1px solid var(--line);background:rgba(255,255,255,.62);backdrop-filter:blur(12px);margin-top:clamp(48px,6vw,80px)}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:26px;font-size:.86rem;color:var(--ink-faint)}
+  .foot-grid a{position:relative;transition:color .22s}
+  .foot-grid a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
+    background:var(--green);transform:scaleX(0);transform-origin:left;
+    transition:transform .35s var(--ease);
+  }
+  .foot-grid a:hover{color:var(--green-deep)}
+  .foot-grid a:hover::after{transform:scaleX(1)}
+  .foot-nav{display:flex;gap:20px;flex-wrap:wrap}
+
+  /* ---------- Motion ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){
+    .about-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:760px){
+    .burger{display:flex}
+    .nav-pill{display:none}
+    nav{
+      position:absolute;top:74px;left:0;right:0;
+      background:rgba(255,255,255,.97);backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+      padding:14px 24px 20px;display:none;
+    }
+    nav.open{display:block}
+    nav ul{flex-direction:column;align-items:stretch;gap:4px}
+    nav a{padding:12px 14px;border-radius:12px;transform:none !important}
+    .head-cta{display:none}
+    .stats{grid-template-columns:1fr}
+    .foot-grid{flex-direction:column}
+    .cta{flex-direction:column;align-items:flex-start}
+    .card{transform:none !important}
+  }
+  @media (max-width:600px){
+    .cards{grid-template-columns:1fr}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .card,.btn,nav a,.portrait img{transition-duration:.01ms !important}
+    .card,.btn,nav a{transform:none !important}
+    .portrait img{transform:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="MedVantage Health Services home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9.5 2h5v7.5H22v5h-7.5V22h-5v-7.5H2v-5h7.5z"/></svg>
+      </span>
+      <span>MedVantage<small>Health Services</small></span>
+    </a>
+
+    <nav id="nav">
+      <span class="nav-pill" id="navPill" aria-hidden="true"></span>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#members">Members &amp; Doctors</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn-primary head-cta" href="#book" data-magnet="btn"><span class="lbl">Book a visit</span></a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap hero-inner">
+      <span class="eyebrow reveal"><span class="dot"></span>Accepting new patients</span>
+      <h1 class="reveal">Care that feels <em>considered</em>, from the first visit onward.</h1>
+      <p class="lede reveal">A small, appointment-based practice in Batangas City built around unhurried consultations, clear answers, and continuity with the same clinician.</p>
+      <div class="actions reveal">
+        <a class="btn btn-primary" href="#book" data-magnet="btn"><span class="lbl">Book a visit</span></a>
+        <a class="btn btn-ghost" href="#members" data-magnet="btn"><span class="lbl">Meet the team</span></a>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><b>30 min</b><span>Standard consult</span></div>
+        <div class="stat"><b>Same week</b><span>Availability</span></div>
+        <div class="stat"><b>1:1</b><span>Named clinician</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="band" id="about">
+    <div class="wrap">
+      <div class="panel reveal">
+        <div class="about-grid">
+          <div>
+            <h2>Primary care without the rush.</h2>
+            <p>MedVantage was founded on a simple premise: thirty-minute appointments, small patient lists, and clinicians who have time to think. We handle everyday medicine properly and refer carefully when specialist input is needed.</p>
+            <p>Everything is appointment-based. Records are shared with you in full, and follow-ups are built into the plan rather than left to chance.</p>
+            <ul class="checks">
+              <li>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.6 16.9 5 12.3l1.5-1.5 3.1 3.1 7.4-7.4L18.5 8z"/></svg></span>
+                Named clinician for every registered patient
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.6 16.9 5 12.3l1.5-1.5 3.1 3.1 7.4-7.4L18.5 8z"/></svg></span>
+                On-site diagnostics and preventive screening
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.6 16.9 5 12.3l1.5-1.5 3.1 3.1 7.4-7.4L18.5 8z"/></svg></span>
+                Full records access, no paperwork on arrival
+              </li>
+            </ul>
+          </div>
+          <div>
+            <blockquote class="quote">
+              The most useful thing a clinic can offer is attention. Everything else follows from it.
+              <footer>Dr. Elena Marsh — Medical Director</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERS & DOCTORS -->
+  <section class="band" id="members">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow"><span class="dot"></span>Members &amp; doctors</span>
+        <h2>The people you'll actually see.</h2>
+        <p>Small team, fixed specialisms, no rotating locums. Each profile lists current availability and languages spoken.</p>
+      </div>
+
+      <div class="cards">
+
+        <!-- ============================================================
+             DOCTOR CARD TEMPLATE
+             Replace src="" with your image path, e.g. src="doctors/marsh.jpg"
+             Empty or broken srcs fall back to the initials plate.
+             ============================================================ -->
+        <article class="card reveal" data-magnet="card">
+          <div class="portrait">
+            <span class="initials" aria-hidden="true">EM</span>
+            <img src="" alt="Portrait of Dr. Elena Marsh" loading="lazy" decoding="async" onerror="this.classList.add('is-broken')">
+            <span class="avail">Accepting patients</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>Dr. Elena Marsh</h3>
+              <p class="role">Medical Director · Primary Care</p>
+            </div>
+            <p>Nineteen years in family medicine. Focus on chronic condition management and preventive care. English, German.</p>
+            <a class="more" href="#book"></a>
+          </div>
+        </article>
+
+        <article class="card reveal" data-magnet="card">
+          <div class="portrait">
+            <span class="initials" aria-hidden="true">JO</span>
+            <img src="" alt="Portrait of Dr. Julian Okafor" loading="lazy" decoding="async" onerror="this.classList.add('is-broken')">
+            <span class="avail">Accepting patients</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>Dr. Julian Okafor</h3>
+              <p class="role">Internal Medicine</p>
+            </div>
+            <p>Diagnostics and complex case review. Runs the clinic's same-week assessment clinic. English, French.</p>
+            <a class="more" href="#book"></a>
+          </div>
+        </article>
+
+        <article class="card reveal" data-magnet="card">
+          <div class="portrait">
+            <span class="initials" aria-hidden="true">SK</span>
+            <img src="" alt="Portrait of Sara Keane, Nurse Practitioner" loading="lazy" decoding="async" onerror="this.classList.add('is-broken')">
+            <span class="avail">Accepting patients</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>Sara Keane, NP</h3>
+              <p class="role">Nurse Practitioner · Women's Health</p>
+            </div>
+            <p>Screening, contraception and menopause care. Fifteen years in community practice. English, Irish.</p>
+            <a class="more" href="#book"></a>
+          </div>
+        </article>
+
+        <article class="card reveal" data-magnet="card">
+          <div class="portrait">
+            <span class="initials" aria-hidden="true">PC</span>
+            <img src="" alt="Portrait of Dr. Princess Mariel Calangi" loading="lazy" decoding="async" onerror="this.classList.add('is-broken')">
+            <span class="avail">Accepting patients</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>Dr. Princess Mariel Calangi</h3>
+              <p class="role">General Practice · Men's Health</p>
+            </div>
+            <p>Preventive screening, cardiovascular risk review and long-term condition follow-up. English, Filipino.</p>
+            <a class="more" href="#book"></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="band" id="book">
+    <div class="wrap">
+      <div class="panel cta reveal">
+        <div>
+          <h2>Register with the practice.</h2>
+          <p>Send us a short note with your preferred clinician and a time that suits you. Reception replies the same working day.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:reception@medvantage.example" data-magnet="btn"><span class="lbl">Request an appointment</span></a>
+          <a class="btn btn-ghost" href="tel:+63435550123" data-magnet="btn"><span class="lbl">Call reception</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap foot-grid">
+    <div>
+      <strong style="color:var(--ink)">MedVantage Health Services</strong><br />
+      Batangas City · Mon–Fri, 08:00–17:00
+    </div>
+    <div class="foot-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#members">Members &amp; Doctors</a>
+    </div>
+    <div>&copy; <span id="year">2026</span> MedVantage. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  /* ---------------- Mobile menu ---------------- */
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  nav.addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.focus();
+    }
+  });
+
+  /* ---------------- Scroll reveal ---------------- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---------------- Nav indicator ---------------- */
+  const pill = document.getElementById('navPill');
+  const navLinks = [...document.querySelectorAll('nav a')];
+
+  function movePill(el){
+    if (!el) return;
+    pill.style.width = el.offsetWidth + 'px';
+    pill.style.transform = `translateY(-50%) translateX(${el.offsetLeft}px)`;
+    pill.style.opacity = '1';
+  }
+  function restPill(){
+    const active = document.querySelector('nav a.active');
+    if (active) movePill(active);
+    else pill.style.opacity = '0';
+  }
+  navLinks.forEach(a => {
+    a.addEventListener('pointerenter', () => movePill(a));
+    a.addEventListener('focus', () => movePill(a));
+  });
+  nav.addEventListener('pointerleave', restPill);
+  nav.addEventListener('focusout', e => {
+    if (!nav.contains(e.relatedTarget)) restPill();
+  });
+
+  /* ---------------- Active section ---------------- */
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+      restPill();
+    });
+  }, { threshold: 0.35 });
+  ['home', 'about', 'members'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) spy.observe(el);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('resize', restPill);
+
+  /* ---------------- Spring hover engine ----------------
+     One loop drives every magnetic element. Each element carries
+     its own spring constants, so buttons snap and cards float.
+  ---------------------------------------------------------- */
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (finePointer && !reduceMotion) {
+
+    const PRESETS = {
+      btn:  { pull: 0.30, max: 10, k: 0.26, d: 0.70, tilt: 0,  parallax: 0 },
+      card: { pull: 0.055, max: 8, k: 0.12, d: 0.80, tilt: 5.5, parallax: 1 }
+    };
+
+    const items = new Set();
+    let raf = null;
+
+    function tick(){
+      items.forEach(it => {
+        // integrate spring
+        it.vx = (it.vx + (it.tx - it.x) * it.k) * it.d;
+        it.vy = (it.vy + (it.ty - it.y) * it.k) * it.d;
+        it.x += it.vx;
+        it.y += it.vy;
+
+        it.el.style.setProperty('--tx', it.x.toFixed(2) + 'px');
+        it.el.style.setProperty('--ty', it.y.toFixed(2) + 'px');
+
+        if (it.parallax) {
+          it.el.style.setProperty('--nx', (it.x / it.max).toFixed(3));
+          it.el.style.setProperty('--ny', (it.y / it.max).toFixed(3));
+        }
+        if (it.tilt) {
+          it.el.style.setProperty('--rx', (-it.y / it.max * it.tilt).toFixed(2) + 'deg');
+          it.el.style.setProperty('--ry', (it.x / it.max * it.tilt).toFixed(2) + 'deg');
+        }
+
+        const calm = Math.abs(it.vx) < 0.02 && Math.abs(it.vy) < 0.02
+                  && Math.abs(it.tx - it.x) < 0.05 && Math.abs(it.ty - it.y) < 0.05;
+        if (calm) {
+          it.x = it.tx; it.y = it.ty; it.vx = 0; it.vy = 0;
+          it.el.style.setProperty('--tx', it.x.toFixed(2) + 'px');
+          it.el.style.setProperty('--ty', it.y.toFixed(2) + 'px');
+          items.delete(it);
+        }
+      });
+      raf = items.size ? requestAnimationFrame(tick) : null;
+    }
+    const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+    document.querySelectorAll('[data-magnet]').forEach(el => {
+      const p = PRESETS[el.dataset.magnet];
+      if (!p) return;
+
+      const it = { el, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, ...p };
+      let box = null;
+
+      const measure = () => { box = el.getBoundingClientRect(); };
+
+      el.addEventListener('pointerenter', () => { measure(); wake(); });
+
+      el.addEventListener('pointermove', e => {
+        if (!box) measure();
+        const dx = e.clientX - (box.left + box.width / 2);
+        const dy = e.clientY - (box.top + box.height / 2);
+
+        it.tx = Math.max(-p.max, Math.min(p.max, dx * p.pull));
+        it.ty = Math.max(-p.max, Math.min(p.max, dy * p.pull));
+
+        if (p.parallax) {
+          el.style.setProperty('--px', ((e.clientX - box.left) / box.width * 100).toFixed(1) + '%');
+          el.style.setProperty('--py', ((e.clientY - box.top) / box.height * 100).toFixed(1) + '%');
+        }
+        wake();
+      });
+
+      const release = () => {
+        it.tx = 0; it.ty = 0;
+        box = null;
+        wake();
+      };
+      el.addEventListener('pointerleave', release);
+      el.addEventListener('blur', release, true);
+    });
+  }
+</script>
+</body>
+</html>
